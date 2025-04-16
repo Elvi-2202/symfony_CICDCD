@@ -31,7 +31,7 @@ If your are on Windows, execute this command in Powershell or cmd
 ```
 cd Jenkins-agent
 docker build -t jenkins-agent-with-docker-and-composer .
-docker run --init --name jenkins_agent_composer -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-with-docker-and-composer -url http://<Jenkins_master_IP_adress>:8080 <secret> <agent_name>
+docker run --init --name jenkins_agent_composer -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-with-docker-and-composer -url http://172.17.0.2:8080 c61658121264adf05f1571ecca888342ab74bfad780f6143b6012de8a15d2d19 symfony_CICDCD
 ```
 
 Want to try the entire CICD on your own repository and registry ?
