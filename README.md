@@ -1,13 +1,39 @@
 # symfony_CICDCD
 
+## Deploy localy
 Install the dependances
 ```
 composer install
 ```
 
+Create the database and make the migrations
+```
+symfony console doctrine:database:create
+symfony console doctrine:migration:migrate
+```
+
 Try locally
 ```
 symfony serve
+```
+
+## Deploy with Docker
+
+If needed deploy a myslq container
+```
+docker run --name symfony-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql
+```
+
+Get the IP adress of mysql container
+```
+docker inspect symfony-mysql
+```
+
+Change the connection string in the .env line 27 with the IP adress of mysql container
+Create database in mysql container and make the migration
+```
+symfony console doctrine:database:create
+symfony console doctrine:migration:migrate
 ```
 
 Build the image and deploy as container
@@ -16,10 +42,7 @@ docker build . -t symfony-cicdcd
 docker run --name symfony_cicdcd_container -p 8080:80 symfony-cicdcd
 ```
 
-CICDCD in Docker environment
-
-Require :
-- Docker Engine instal
+## Deploy with Jenkins
 
 If not already done start an instance of jenkins_master
 ```
